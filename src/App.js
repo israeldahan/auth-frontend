@@ -14,18 +14,30 @@ function App() {
     getData('http://localhost:3001');
   }, []);
 
-  const handleClick = async () => {
+  const handleLogin = async () => {
     const response = await fetch('http://localhost:3001/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ username: 'admin', password: 'adminjjj' })
+      body: JSON.stringify({ username: 'admin', password: 'admin' })
     });
     const data = await response.json();
     console.log(data);
   }
   
+  const handleRegister = async () => {
+    const response = await fetch('http://localhost:3001/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username: 'admin', password: 'admin' , email: 'admin@admin.com' })
+    });
+    const data = await response.json();
+    console.log(data);
+  }
+
   const handleAdmin = async () => {
     const response = await fetch('http://localhost:3001/admin', {
       headers: {
@@ -42,7 +54,8 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         {data && data.msg && <p>{data.msg}</p>}
-        <button onClick={handleClick}>Login</button>
+        <button onClick={handleLogin}>Login</button>
+        <button onClick={handleRegister}>Register</button>
         <button onClick={handleAdmin} >Admin</button>
       </header>
     </div>
